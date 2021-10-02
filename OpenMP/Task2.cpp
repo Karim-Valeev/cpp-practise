@@ -14,7 +14,7 @@ int main()
 
     std::cout << "Parallel:\n";
 
-#pragma omp parallel num_threads(number_of_threads) if ( number_of_threads > 2 )
+    #pragma omp parallel num_threads(number_of_threads) if ( number_of_threads > 2 )
     {
         print_thread_number();
     }
@@ -23,7 +23,7 @@ int main()
 
     number_of_threads = 2;
 
-#pragma omp parallel num_threads(number_of_threads) if ( not (number_of_threads <= 2))
+    #pragma omp parallel num_threads(number_of_threads) if ( not (number_of_threads <= 2))
     {
         print_thread_number();
     }

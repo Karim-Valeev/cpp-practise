@@ -4,7 +4,7 @@
 int main()
 {
     int global_number_of_threads = 8;
-#pragma omp parallel num_threads(global_number_of_threads)
+    #pragma omp parallel num_threads(global_number_of_threads)
     {
         int thread_id = omp_get_thread_num();
         int local_number_of_threads = omp_get_num_threads();
