@@ -17,8 +17,6 @@ int main()
         printf("a[%d] = %d\n",i,a[i]);
     }
 
-//    Todo Разобраться на что будет влиять то, что я переменные не обернул в эти штуки
-
     #pragma omp parallel for shared(max) num_threads(4)
     for (int i = 0; i < n; i++)
     {

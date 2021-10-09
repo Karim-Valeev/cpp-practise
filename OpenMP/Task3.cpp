@@ -39,7 +39,8 @@ int main()
     return 0;
 }
 
-// shared - The shared clause declares the variables in the list to be shared among all the threads in a team. All threads within a team access the same storage area for shared variables.
+// shared - The shared clause declares the variables in the list to be shared among all the threads in a team.
+// All threads within a team access the same storage area for shared variables.
 
 // private - The private clause declares the variables in the list to be private to each thread in a team.
 
