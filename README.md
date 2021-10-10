@@ -1,6 +1,8 @@
 
 ## Tasks completed by me on the third course at the university related to the topic of parallel programming
 
+[Сompleted Coursera course](https://www.coursera.org/learn/parallelnoye-programmirovaniye)
+
 Чтобы запустить какое-либо решение, пропишите его название в файле CMakeLists.txt в add_executable(cpp_practise file_name.cpp)
 
 ### OpenMP tasks:
@@ -25,3 +27,5 @@
 13. Модифицируйте задачу 1 так, чтобы потоки распечатывали свои идентификаторы в обратном (убывающем) порядке. Существует как минимум 5 способов решения. Постарайтесь найти как можно больше.
 
 ### MPI tasks:
+1. Hello world из всех процессов. Уметь запускать MPI.
+2. 
