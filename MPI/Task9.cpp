@@ -22,38 +22,38 @@ int main(int argc, char** argv)
     }
 
 //  вспомогательные массивы
-    int *len = new int[size];
-    int *ind = new int[size];
+    int *send_lengths = new int[size];
+    int *offsets = new int[size];
     int *revind = new int[size];
 
 //
-    int rest = N;
-    int k = rest / size;
-    len[0] = k;
-    ind[0] = 0;
+    int k = N / size;
+    send_lengths[0] = k;
+    offsets[0] = 0;
     revind[0] = N - k;
 
     for (int i = 1; i < size; i++) {
-        rest -= k;
-        k = rest / (size - i);
-        len[i] = k;
-        ind[i] = ind[i - 1] + len[i - 1];
-        revind[i] = revind[i - 1] - len[i];
+        send_lengths[i] = k;
+        offsets[i] = offsets[i - 1] + send_lengths[i - 1];
+//        с кем надо местами поменяться процессам
+        revind[i] = revind[i - 1] - send_lengths[i];
     }
-    int ProcLen = len[rank];
-    int *subarr = new int[ProcLen];
 
-    MPI_Scatterv(x, 5, ind, MPI_INT, subarr, 5, MPI_INT, 0, MPI_COMM_WORLD);
+    int *sub_arr = new int[k];
 
-    int *revers = new int[5];
+    MPI_Scatterv(x, send_lengths, offsets,
+                 MPI_INT, sub_arr, k,
+                 MPI_INT, 0, MPI_COMM_WORLD);
+
+    int *reverse_sub_arr = new int[k];
     printf("rank: %d\n", rank);
-    for(int i = 0; i < ProcLen; i++) {
-        revers[i] = subarr[ProcLen - i - 1];
-        printf("%d ",revers[i]);
+    for(int i = 0; i < k; i++) {
+        reverse_sub_arr[i] = sub_arr[k - i - 1];
+        printf("%d ",reverse_sub_arr[i]);
     }
     printf("\n");
-//    обеспечивающей переменное число посылаемых данных
-    MPI_Gatherv(revers, ProcLen, MPI_INT, result, len, revind, MPI_INT, 0, MPI_COMM_WORLD);
+
+    MPI_Gatherv(reverse_sub_arr, k, MPI_INT, result, send_lengths, revind, MPI_INT, 0, MPI_COMM_WORLD);
 
     if(rank == 0) {
         printf("\n");
