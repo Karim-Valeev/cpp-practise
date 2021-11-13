@@ -9,7 +9,7 @@ int main(int argc, char** argv)
     srand((unsigned int)time(nullptr));
     int N = 20;
     int rank, size;
-    int a[N], min = -100, max = 100;
+    int a[N], min = -20, max = 20;
     int sum_count[2], proc_sum_count[2];
 
     MPI_Init(&argc, &argv);
@@ -18,11 +18,10 @@ int main(int argc, char** argv)
 
     if (rank == 0) {
         for (int i = 0; i < N; i++) {
-            int random = min + (rand() % static_cast<int>(max - min + 1));
-            a[i] = random;
-
+            a[i] = rand() % 1000;
             printf("%d ", a[i]);
         }
+        printf("\n");
     }
 
     int *len = new int[size];
