@@ -3,6 +3,8 @@
 
 int main()
 {
+    srand((unsigned int)time(nullptr));
+
     int n = 100;
     int a[n];
 

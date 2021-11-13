@@ -3,6 +3,8 @@
 
 int main()
 {
+    srand((unsigned int)time(nullptr));
+
     int n = 1000;
 
     int a[n][n];

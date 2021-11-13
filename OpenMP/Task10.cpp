@@ -6,6 +6,8 @@
 
 int main()
 {
+    srand((unsigned int)time(nullptr));
+
     int n = 600;
     int m = 800;
     int a[n][m];

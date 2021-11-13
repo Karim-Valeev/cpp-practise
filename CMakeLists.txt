@@ -11,21 +11,11 @@ set(CMAKE_CXX_STANDARD 14)
 #        OpenMP/Task10.cpp)
 
 
-# for MPI:
-find_package(MPI REQUIRED)
-# Include MPI includes
-include_directories(${MPI_INCLUDE_PATH})
+include_directories(/usr/include/mpi)
 
-add_executable(cpp_practise MPI/Task1.cpp)
+add_executable(cpp_practise MPI/Task11.cpp)
 
-# Link against MPI
-target_link_libraries(cpp_practise ${MPI_LIBRARIES})
+set(CMAKE_C_COMPILER "/usr/bin/mpicc")
+set(CMAKE_CXX_COMPILER "/usr/bin/mpic++")
 
-if (MPI_COMPILE_FLAGS)
-    set_target_properties(cpp_practise PROPERTIES
-            COMPILE_FLAGS "${MPI_COMPILE_FLAGS}")
-endif ()
-if (MPI_LINK_FLAGS)
-    set_target_properties(cpp_practise PROPERTIES
-            LINK_FLAGS "${MPI_LINK_FLAGS}")
-endif ()
+cmake_minimum_required(VERSION 3.6)
